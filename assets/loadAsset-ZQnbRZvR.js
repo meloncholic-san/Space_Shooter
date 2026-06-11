@@ -1,0 +1,1 @@
+import{t as e}from"./loadAsset-CqpBJdLy.js";export{e as loadAsset};
