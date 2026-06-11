@@ -1,8 +1,9 @@
 import * as PIXI from 'pixi.js';
 import { GAME_HEIGHT, GAME_WIDTH } from '../constants/contants';
+import { loadAsset } from './loadAsset';
 
 export const setSceneBackground = async (texturePath: string, stage: PIXI.Container) => {
-    const texture = await PIXI.Assets.load(texturePath);
+    const texture = await loadAsset(texturePath);
     const background = new PIXI.Sprite(texture);
     background.width = GAME_WIDTH;
     background.height = GAME_HEIGHT;

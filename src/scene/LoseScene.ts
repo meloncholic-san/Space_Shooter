@@ -35,7 +35,7 @@ export class LoseScene extends BaseScene {
         this.addChild(hint);
     }
 
-    update(delta: number) {
+    update() {
         if (this.input.isJustPressed('Enter')) {
             this.sceneManager?.changeScene(new Level1Scene());
         }

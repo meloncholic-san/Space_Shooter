@@ -9,6 +9,7 @@ import { CollisionSystem } from '../utils/CollisionSystem';
 import { GAME_WIDTH, GAME_HEIGHT } from '../constants/contants';
 import { LoseScene } from './LoseScene';
 import { Level2Scene } from './Level2Scene';
+import { loadAsset} from '../utils/loadAsset'
 
 
 export class Level1Scene extends BaseScene {
@@ -25,7 +26,8 @@ export class Level1Scene extends BaseScene {
     async init(input: InputManager) {
         //player
         this.input = input;
-        const playerTexture = await PIXI.Assets.load('./playerShip1_red.png');
+
+        const playerTexture = await loadAsset('/playerShip1_red.png');
         console.log('Player texture loaded:', playerTexture);
 
         this.player = new Player(
@@ -36,11 +38,11 @@ export class Level1Scene extends BaseScene {
         this.addChild(this.player);
         //asteroids
         const asteroidTextures = await Promise.all([
-            PIXI.Assets.load('./meteorBrown_big4.png'),
-            PIXI.Assets.load('./meteorBrown_med1.png'),
-            PIXI.Assets.load('./meteorBrown_big1.png'),
-            PIXI.Assets.load('./meteorGrey_big1.png'),
-            PIXI.Assets.load('./meteorGrey_med1.png'),
+            loadAsset('/meteorBrown_big4.png'),
+            loadAsset('/meteorBrown_med1.png'),
+            loadAsset('/meteorBrown_big1.png'),
+            loadAsset('/meteorGrey_big1.png'),
+            loadAsset('/meteorGrey_med1.png'),
         ]);
         console.log('Asteroids textures loaded:', asteroidTextures);
 

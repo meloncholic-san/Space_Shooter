@@ -10,7 +10,7 @@ import { BossBullet} from '../entities/BossBullet';
 import { CollisionSystem } from '../utils/CollisionSystem';
 import { LoseScene } from './LoseScene';
 import { WinScene } from './WinScene';
-
+import { loadAsset} from '../utils/loadAsset'
 
 export class Level2Scene extends BaseScene {
     private boss!: Boss;
@@ -30,7 +30,7 @@ export class Level2Scene extends BaseScene {
         await setSceneBackground('/space_background2.png', this);
         //boss
         const [bossTexture, damage1Texture, damage2Texture] = 
-            await Promise.all([PIXI.Assets.load('./shipGreen_manned.png'),PIXI.Assets.load('./shipGreen_damage1.png'),PIXI.Assets.load('./shipGreen_damage2.png'),]);
+            await Promise.all([loadAsset('/shipGreen_manned.png'),loadAsset('/shipGreen_damage1.png'),loadAsset('/shipGreen_damage2.png')]);
 
         this.boss = new Boss(bossTexture, damage1Texture, damage2Texture);
         this.boss.y = -GAME_HEIGHT / 2 + 100;
@@ -38,7 +38,7 @@ export class Level2Scene extends BaseScene {
 
         //player 
         this.input = input;
-        const playerTexture = await PIXI.Assets.load('./playerShip1_red.png');
+        const playerTexture = await loadAsset('./playerShip1_red.png');
         console.log('Player texture loaded:', playerTexture);
 
         this.player = new Player(playerTexture);
@@ -239,7 +239,7 @@ export class Level2Scene extends BaseScene {
             [this.player]
         );
 
-        for (const hit of playerHits) {
+        for (const _ of playerHits) {
             this.sceneManager?.changeScene(new LoseScene());
             return;
         }
